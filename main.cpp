@@ -79,6 +79,30 @@ public:
 		return m_length;
 	}
 
+	void insertar_elementos_posicion(int posicion , int elemento)
+	{
+		if (0 < posicion <= m_length)
+		{
+			int* data = new int[static_cast<std::size_t>(m_length + 1)];
+			for (int i{ 0 }; i < posicion; ++i)
+			{
+				data[i] = m_data[i];
+			}
+
+			data[posicion] = elemento;
+
+			for (int i{ posicion }; i < m_length; ++i)
+			{
+				data[i + 1] = m_data[i];
+			}
+
+			delete[] m_data;
+
+			m_data = data;
+
+		}
+	}
+
 };
 
 int	main()
