@@ -81,7 +81,7 @@ public:
 
 	void insertar_elementos_posicion(int posicion , int elemento)
 	{
-		if (0 < posicion <= m_length)
+		if ((0 < posicion) && (posicion <= m_length))
 		{
 			int* data = new int[static_cast<std::size_t>(m_length + 1)];
 			for (int i{ 0 }; i < posicion; ++i)
@@ -89,12 +89,15 @@ public:
 				data[i] = m_data[i];
 			}
 
-			data[posicion] = elemento;
+			data[posicion - 1] = elemento;
 
-			for (int i{ posicion }; i < m_length; ++i)
+			for (int i{ posicion }; i < (m_length + 1); ++i )
 			{
-				data[i + 1] = m_data[i];
+				data[i] = m_data[i - 1];
 			}
+
+			++m_length;
+
 
 			delete[] m_data;
 
@@ -114,8 +117,24 @@ int	main()
 	std::cout << "arr1 length: " << arr1.getLength() << '\n';
 
 	arr1[0] = 10;
-	std::cout << "arr[0]: " << arr[0] << '\n';
+	arr1[1] = 11;
+	arr1[2] = 12;
+	arr1[3] = 13;
+	arr1[4] = 14;
+
+	
 	std::cout << "arr1[0]: " << arr1[0] << '\n';
+	std::cout << "arr1[1]: " << arr1[1] << '\n';
+	std::cout << "arr1[2]: " << arr1[2] << '\n';
+	std::cout << "arr1[3]: " << arr1[3] << '\n';
+	std::cout << "arr1[4]: " << arr1[4] << '\n';
+
+	arr1.insertar_elementos_posicion(1, 26); // insert 26 at position 1;
+
+	std::cout << "After inserting 26 at position 1:\n";
+	std::cout << "arr1[0]: " << arr1[0] << '\n';
+
+
 
 	return 0;
 }
