@@ -134,7 +134,18 @@ int	main()
 	std::cout << "After inserting 26 at position 1:\n";
 	std::cout << "arr1[0]: " << arr1[0] << '\n';
 
+	arr1.insertar_elementos_posicion(3, 30); // insert 30 at position 3;
+	std::cout << "After inserting 30 at position 3:\n";
+	std::cout << "arr1[2]: " << arr1[2] << '\n';
 
+	std::cout << "============================================================\n";
+
+	for (int i{ 0 }; i < arr1.getLength(); ++i)
+	{
+		std::cout << "arr1[" << i << "]: " << arr1[i] << '\n';
+	}
+	
+	arr1.erase(); // clear the array after use
 
 	return 0;
 }
