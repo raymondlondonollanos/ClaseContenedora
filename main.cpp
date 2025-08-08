@@ -62,7 +62,7 @@ public:
 		{
 			m_length = copy.m_length;
 			m_data = new int[static_cast<std::size_t>(m_length)];
-			for (std::size_t i{ 0 }; i < m_length; ++i)
+			for (int i = 0 ; i < m_length; ++i)
 			{
 				m_data[i] = copy.m_data[i];
 			}
@@ -84,20 +84,27 @@ public:
 		if ((0 < posicion) && (posicion <= m_length))
 		{
 			int* data = new int[static_cast<std::size_t>(m_length + 1)];
-			for (int i{ 0 }; i < posicion; ++i)
+			for(int i=  0 ; i < posicion; ++i)
 			{
 				data[i] = m_data[i];
 			}
 
 			data[posicion - 1] = elemento;
 
-			for (int i{ posicion }; i < (m_length + 1); ++i )
+			for (int i = posicion ; i < (m_length + 1); ++i )
 			{
 				data[i] = m_data[i - 1];
 			}
 
 			++m_length;
 
+
+			std::cout << "Current state of arr1 after inserting " << elemento << " at position " << posicion << ":\n";
+			for (int i=  0 ; i < m_length; ++i)
+			{
+				std::cout << data[i] << " ";
+			}
+			std::cout << '\n';
 
 			delete[] m_data;
 
